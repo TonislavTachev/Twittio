@@ -1,4 +1,4 @@
-import * as React from 'react';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -20,13 +20,16 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import AuthState from './context/AuthContext/AuthState'
+import Home from './components/Home/Home'
 
 const Stack = createStackNavigator();
 const App: () => React$Node = () => {
   return (   
       <NavigationContainer>
+        
+            <Stack.Screen name="Home" component={Home}/>
           
-      
       </NavigationContainer>
   ); 
 };
