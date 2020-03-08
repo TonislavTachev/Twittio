@@ -2,7 +2,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import React from 'react';
+import React, {useEffect, useContext} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -22,14 +22,21 @@ import {
 
 import AuthState from './context/AuthContext/AuthState'
 import Home from './components/Home/Home'
-
+import Loading from './components/Loading/Loading'
+import AuthContext from './context/AuthContext/authContext'
+//screen which is going to handle whether the user has been logged in
+import NoneStack from './noneTokenStack/none'
 const Stack = createStackNavigator();
+const RootStack = createStackNavigator();
 const App: () => React$Node = () => {
+
   return (   
       <NavigationContainer>
-        
-            <Stack.Screen name="Home" component={Home}/>
-          
+        <AuthState>
+          <Stack.Navigator>
+             <Stack.Screen name="NoToken" component={NoneStack} options={{headerShown:false}}/>            
+          </Stack.Navigator>
+         </AuthState>
       </NavigationContainer>
   ); 
 };
