@@ -25,7 +25,10 @@ const Register = ({navigation}) => {
     const getLName = (lname)=>{
       setLastName(lname);
     }
-
+    
+    const switchToLogin = () =>{
+        navigation.navigate('Login');
+    }
 
     const createUser = () =>{
      //get user input and dispatch to reducer, authenticate and set the token in async storage
@@ -57,6 +60,7 @@ const Register = ({navigation}) => {
                 <TextInput placeholder='First name' style={myStyle.input} onChangeText={getFName} value={firstName}/>
                 <TextInput placeholder='Last name' style={myStyle.input} onChangeText={getLName} value={LastName}/>
                 <TouchableOpacity style={myStyle.btn}><Text onPress={createUser} style={{textAlign:'center', fontSize:18, color:'#fff'}}>Submit</Text></TouchableOpacity>
+                 <TouchableOpacity style={myStyle.loginbtn}><Text onPress={switchToLogin} style={{textAlign:'center', fontSize:18, color:'#fff'}}>Login</Text></TouchableOpacity>
             </View> 
           </View>
         </ScrollView>
@@ -104,6 +108,13 @@ const myStyle = StyleSheet.create({
     },
     btn:{
         backgroundColor:'#2ed573',
+        marginTop:20,
+        padding:10,
+        elevation:10,
+        borderRadius:5
+    },
+    loginbtn:{
+         backgroundColor:'#f9ca24',
         marginTop:20,
         padding:10,
         elevation:10,

@@ -41,6 +41,29 @@ const AuthState = props => {
 
     }
 
+    const login = async(email, password) =>{
+     
+      const obj = {
+          username:email,
+          password:password,
+      }
+
+      const config = {
+          'Content-Type' : 'application/json'
+      }
+
+      try {
+
+      const userToken = await axios.post('http://192.168.0.14:5000/api/auth/signup', obj, config);
+
+      dispatch({type:LOGIN_SUCCESS, payload:userToken.data});
+
+      } catch (error) {
+          
+      }
+
+    }
+
     const getUser = async() =>{
 
       let token = await setAuthorizatinToken();

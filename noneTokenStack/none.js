@@ -3,6 +3,7 @@ import React, {useContext, useEffect} from 'react'
 import AuthContext from '../context/AuthContext/authContext';
 import Register from '../components/Register/Register';
 import Loading from '../components/Loading/Loading';
+import Login from '../components/Login/Login'
 import Home from '../components/Home/Home';
 const None = createStackNavigator();
 import {AsyncStorage} from 'react-native';
@@ -26,7 +27,10 @@ const none = () => {
         <None.Navigator>
         {/* if not, return a screen which prompts him to input his credentials */}
         {isAuthenticated == false ? (
+          <>
           <None.Screen name="Register" component={Register} options={{headerShown:false}}/>
+          <None.Screen name="Login" component={Login} options={{headerShown:false}}/>
+          </>
         ) : (
         // if yes, return the home screen component
           <None.Screen name="Home" component={Home}/>

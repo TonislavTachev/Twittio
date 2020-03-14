@@ -5,6 +5,7 @@ import {AsyncStorage} from 'react-native';
 
 export default async(state,action) =>{
     switch(action.type) {
+        case LOGIN_SUCCESS:
         case REGISTER_SUCCESS:
         try {
             await AsyncStorage.setItem('token', action.payload);
