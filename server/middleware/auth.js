@@ -1,17 +1,20 @@
 const jwt = require('jsonwebtoken');
 const config = require('config');
-const auth = (req,res,next) =>{
+const auth = async(req,res,next) =>{
    
    //extract the token from the header parameter
    let token = req.headers['x-auth'];
 
    //decode the token 
-   let decoded = jwt.verify(token, config.get('jwtSecret'));
-
-   if(decoded){
+   try {
+       
+    let decoded = await jwt.verify(token, config.get('jwtSecret'));
        req.user = decoded.tokenUser.id;
-       next();
-   } 
+       next();  
+   } catch (error) {
+       return res.status(401).json({msg: 'Token is not valid'});
+   }
+   
 }
 
 module.exports = auth;
