@@ -1,46 +1,72 @@
 import React, {useState, useContext} from 'react'
-import {View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native'
+import {View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView} from 'react-native'
 import AuthContext from '../../context/AuthContext/authContext';
 const Register = ({navigation}) => {
     const authContext = useContext(AuthContext);
     const {register} = authContext;
 
+    const [email, setEmail] = useState('');
+    const [password, setpassword] = useState('');
+    const [firstName, setfirstName] = useState('');
+    const [LastName, setLastName] = useState('');
+
+
+    const getEmail = (email) =>{
+        setEmail(email);
+    }
+
+    const getPassword = (password)=>{
+        setpassword(password);
+    }
+
+    const getFName = (fname)=>{
+      setfirstName(fname)
+    }
+    const getLName = (lname)=>{
+      setLastName(lname);
+    }
+
+
     const createUser = () =>{
      //get user input and dispatch to reducer, authenticate and set the token in async storage
-        register();
+        register(email, password, firstName, LastName);
+        setEmail('');
+        setpassword('');
+        setfirstName('');
+        setLastName('');
     }
 
     return (
-        <View style={myStyle.view}>
+        <ScrollView style={myStyle.view} contentContainerStyle={{alignItems:'center'}}>
           <View style={myStyle.field}>
             <View>
             <View style={myStyle.horizontal}>
                 <Text style={{textAlign:'center', fontSize:25, color:'#fff',paddingBottom:15}}>Register</Text>
             </View>
                 <Text style={{color:'#fff', fontSize:20, marginTop:20}}>Create an account</Text>
-                <TextInput placeholder='E-mail' style={myStyle.input}/>
+                <TextInput placeholder='E-mail' style={myStyle.input} onChangeText={getEmail} value={email}/>
             </View>
             <View>
-                <TextInput placeholder='Password' secureTextEntry={true} style={myStyle.input}/>
+                <TextInput placeholder='Password' secureTextEntry={true} style={myStyle.input} onChangeText={getPassword} value={password}/>
             </View>
             <View>
             <View style={myStyle.horizontal2}>
                
             </View>
                 <Text style={{color:'#fff', fontSize:20, marginTop:20}}>Personal information</Text>
-                <TextInput placeholder='First name' style={myStyle.input}/>
-                <TextInput placeholder='Last name' style={myStyle.input}/>
+                <TextInput placeholder='First name' style={myStyle.input} onChangeText={getFName} value={firstName}/>
+                <TextInput placeholder='Last name' style={myStyle.input} onChangeText={getLName} value={LastName}/>
                 <TouchableOpacity style={myStyle.btn}><Text onPress={createUser} style={{textAlign:'center', fontSize:18, color:'#fff'}}>Submit</Text></TouchableOpacity>
             </View> 
           </View>
-        </View>
+        </ScrollView>
     )
 }
 
 const myStyle = StyleSheet.create({
     view:{
         flex:1,
-        alignItems:'center',
+        // alignItems:'center',
         backgroundColor:'#3742fa'
     },
     input:{
