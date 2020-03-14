@@ -13,12 +13,17 @@ const auth = require('../middleware/auth');
 //@method get token and return user
 router.get('/', auth, async(req,res)=>{
 
-   const {id} = req.user;
+   try {
+    const {id} = req.user;
    //find the user
    let user = await User.findOne({id}).select('-password');
 
    res.json(user);
-
+       
+   } catch (error) {
+      res.status(401).json({msg:"Invalid credentials"});
+   }
+   
 })
 
 
@@ -64,7 +69,7 @@ router.post('/signup',[
         id: user._id
     }
 
-    jwt.sign({tokenUser},config.get('jwtSecret'), {expiresIn:'3000000'}, (err, token)=>{
+    jwt.sign({tokenUser},config.get('jwtSecret'), {expiresIn:'300000000'}, (err, token)=>{
         res.status(200).json(token);
     })
 
@@ -96,7 +101,7 @@ if(user){
          id:user._id
      }
 
-     jwt.sign({tokenUser}, config.get('jwtSecret'), {expiresIn:'300000'}, (err,token)=>{
+     jwt.sign({tokenUser}, config.get('jwtSecret'), {expiresIn:'300000000'}, (err,token)=>{
           res.status(200).json(token);
      })
  } else {
