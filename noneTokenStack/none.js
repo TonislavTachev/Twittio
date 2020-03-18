@@ -1,6 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React, {useContext, useEffect} from 'react'
 import AuthContext from '../context/AuthContext/authContext';
+import AuthState from '../context/AuthContext/AuthState';
 import Register from '../components/Register/Register';
 import Loading from '../components/Loading/Loading';
 import Login from '../components/Login/Login'
@@ -20,22 +21,26 @@ const none = () => {
      //get the token if there is any and check it
      //if it's authorized, switch to home screen,
      //else, switch to login screen again
-     getUser();
+    getUser();
   }, [])
   
     return (
+       <AuthState>
         <None.Navigator>
         {/* if not, return a screen which prompts him to input his credentials */}
-        {isAuthenticated == false ? (
+        {isAuthenticated === false ? (
           <>
-          <None.Screen name="Register" component={Register} options={{headerShown:false}}/>
+          <None.Screen name="Register" component={Register} options={{headerShown:false,}}/>
           <None.Screen name="Login" component={Login} options={{headerShown:false}}/>
           </>
         ) : (
         // if yes, return the home screen component
-          <None.Screen name="Home" component={Home}/>
+          <None.Screen name="Home" component={Home} options={{
+            headerShown:false
+          }}/>
         )}
         </None.Navigator>
+        </AuthState>
     )
 }
 

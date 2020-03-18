@@ -3,29 +3,38 @@ REGISTER_FAILURE, LOGOUT, GET_USER} from '../../types'
 import {AsyncStorage} from 'react-native';
 
 
-export default async(state,action) =>{
+export default(state,action) =>{
+
     switch(action.type) {
-        case LOGIN_SUCCESS:
         case REGISTER_SUCCESS:
-        try {
-            await AsyncStorage.setItem('token', action.payload);
-            return {
-                ...state,
-                loading:false,
-                isAuthenticated:true
-            }
-            break;
-        } catch (error) {
-            
-        }
-        break;
-        case GET_USER:
+        case LOGIN_SUCCESS:
+        AsyncStorage.setItem('token', action.payload);
         return{
             ...state,
+            isAuthenticated:true,
             loading:false,
-            isAuthenticated:true
+            user:action.payload
         }
-    
+
+        
+        case GET_USER:
+         return {
+             ...state,
+             user:action.payload,
+             isAuthenticated:true
+         }
+         break;
+
+        case LOGOUT:
+        AsyncStorage.removeItem('token');
+         return{
+             ...state,
+             isAuthenticated:false
+         }
+         break;
+
+
+
         default:
             break;
     }
