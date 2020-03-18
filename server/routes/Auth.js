@@ -95,13 +95,13 @@ let user = await User.findOne({username});
 if(user){
  
  let isTrue = await bcrypt.compare(password, user.password);
-//if passwords match, proceed to generate a 
+//if passwords match, proceed to generate a token
  if(isTrue === true){
      const tokenUser = {
          id:user._id
      }
 
-     jwt.sign({tokenUser}, config.get('jwtSecret'), {expiresIn:'300000000'}, (err,token)=>{
+     jwt.sign({tokenUser}, config.get('jwtSecret'), {expiresIn:'3000000'}, (err,token)=>{
           res.status(200).json(token);
      })
  } else {

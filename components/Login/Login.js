@@ -4,12 +4,10 @@ import AuthContext from '../../context/AuthContext/authContext';
 const Login = ({navigation}) => {
 
     const authContext = useContext(AuthContext);
-    const {register} = authContext;
+    const {login} = authContext;
 
     const [email, setEmail] = useState('');
     const [password, setpassword] = useState('');
-    const [firstName, setfirstName] = useState('');
-    const [LastName, setLastName] = useState('');
 
 
     const getEmail = (email) =>{
@@ -20,8 +18,10 @@ const Login = ({navigation}) => {
         setpassword(password);
     }
 
-    const login = ()=>{
-
+    const getLogin = ()=>{
+          login(email, password);
+          setEmail('');
+          setpassword('');
     }
 
     return (
@@ -41,7 +41,7 @@ const Login = ({navigation}) => {
             <View style={myStyle.horizontal2}>
                
             </View>
-                <TouchableOpacity style={myStyle.btn}><Text onPress={login} style={{textAlign:'center', fontSize:18, color:'#fff'}}>Submit</Text></TouchableOpacity>
+                <TouchableOpacity style={myStyle.btn}><Text onPress={getLogin} style={{textAlign:'center', fontSize:18, color:'#fff'}}>Submit</Text></TouchableOpacity>
             </View> 
           </View>
         </ScrollView>

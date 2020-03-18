@@ -7,14 +7,15 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "devtools": "react-devtools"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.7",
     "@react-navigation/native": "^5.0.9",
     "@react-navigation/stack": "^5.1.1",
     "axios": "^0.19.2",
-    "react": "16.9.0",
+    "react": "16.0.9",
     "react-native": "0.61.5",
     "react-native-gesture-handler": "^1.6.0",
     "react-native-reanimated": "^1.7.0",
@@ -29,6 +30,7 @@
     "eslint": "6.8.0",
     "jest": "24.9.0",
     "metro-react-native-babel-preset": "0.56.4",
+    "react-devtools": "^3.6.3",
     "react-test-renderer": "16.9.0"
   },
   "jest": {

@@ -1,14 +1,28 @@
 import React, {useContext, useEffect} from 'react'
-import {View, StyleSheet, Text} from 'react-native'
+import {View, StyleSheet, Text, Button} from 'react-native'
 import AuthContext from '../../context/AuthContext/authContext';
 import Progressbar from '../Progress/Progressbar';
-const Home = ({route, navigation}) => {
+const Home = ({natigation}) => {
 
-  const authContext = useContext(AuthContext);
-  const {user, getUser, isAuthenticated} = authContext;
+    const authContext = useContext(AuthContext);
+    const {loading, user, logout, getUser, isAuthenticated} = authContext;
+
+     useEffect(()=>{
+        getUser();
+     },[])
+
+    const onLogOut = () =>{
+       logout();
+    }
+
+    if(user === null){
+      return <Progressbar/>
+    }
 
     return (
-        <View>
+        <View style={{flex:1}}>
+        <Text>{user.username}</Text>
+         
         </View>
     )
 }
