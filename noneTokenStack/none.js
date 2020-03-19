@@ -1,4 +1,5 @@
 import { createStackNavigator } from '@react-navigation/stack';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import React, {useContext, useEffect} from 'react'
 import AuthContext from '../context/AuthContext/authContext';
 import AuthState from '../context/AuthContext/AuthState';
@@ -6,8 +7,26 @@ import Register from '../components/Register/Register';
 import Loading from '../components/Loading/Loading';
 import Login from '../components/Login/Login'
 import Home from '../components/Home/Home';
+import Profile from '../components/Profile/Profile';
+import Settings from '../components/Settings/Settings';
+import Create from '../components/CreatePost/CreatePost';
 const None = createStackNavigator();
+const Tab = createMaterialTopTabNavigator();
 import {AsyncStorage} from 'react-native';
+
+
+function MyTabs() {
+  return (
+    <Tab.Navigator tabBarOptions={{
+    labelStyle:{color:'#fff', fontSize:13},
+    style: { backgroundColor: '#4b7bec' },
+  }}>
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="Settings" component={Settings} />
+    </Tab.Navigator>
+  );
+}
 
 //stack navigator for tackling user authentication
 const none = () => {
@@ -21,11 +40,11 @@ const none = () => {
      //get the token if there is any and check it
      //if it's authorized, switch to home screen,
      //else, switch to login screen again
-    getUser();
+        getUser();
   }, [])
   
     return (
-       <AuthState>
+       
         <None.Navigator>
         {/* if not, return a screen which prompts him to input his credentials */}
         {isAuthenticated === false ? (
@@ -35,12 +54,15 @@ const none = () => {
           </>
         ) : (
         // if yes, return the home screen component
-          <None.Screen name="Home" component={Home} options={{
+        <>
+          <None.Screen name="Tabs" component={MyTabs} options={{
             headerShown:false
           }}/>
+          <None.Screen name="Create" component={Create}/>
+          </>
         )}
         </None.Navigator>
-        </AuthState>
+        
     )
 }
 

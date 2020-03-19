@@ -3,7 +3,7 @@ import AuthContext from './authContext'
 import AuthReducer from './AuthReducer'
 import {AsyncStorage} from 'react-native'
 import axios from 'axios';
-import {GET_USER, LOGOUT, LOGIN_SUCCESS} from '../../types'
+import {GET_USER, LOGOUT, LOGIN_SUCCESS, GET_USER_FAILURE} from '../../types'
 
 const AuthState = props => {
 
@@ -35,6 +35,8 @@ const AuthState = props => {
 
         }
 
+       } else {
+           dispatch({type:GET_USER_FAILURE});
        }
     }
 
