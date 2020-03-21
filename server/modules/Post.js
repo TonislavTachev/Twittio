@@ -10,8 +10,11 @@ const newPostSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    createdAt:Date
-
+    createdAt:Date},
+    {
+  toJSON: {
+    virtuals: true,
+  },
 })
 
 module.exports = mongoose.model('post', newPostSchema);
