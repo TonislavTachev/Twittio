@@ -13,10 +13,16 @@ const Post = props => {
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             {user.posts.map(el => <PostItem key={el._id} post={el} user={user}/>)}
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container:{
+        width:'98%'
+    }
+})
 
 export default Post
