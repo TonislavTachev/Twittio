@@ -36,28 +36,22 @@ const Home = ({natigation}) => {
     }
 
     return (
-        <SafeAreaView style={{flex:1}}>
-        <ScrollView contentContainerStyle={styles.ScrollView}
+        <ScrollView contentContainerStyle={{flexGrow:1}}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
         }>
-        
-        <Text>{user.username}</Text>
+          <View style={styles.container}>
+              <Text>{user.username}</Text>
+          </View>
          </ScrollView>
-        </SafeAreaView>
+      
     )
 }
 
 const styles = StyleSheet.create({
     container: {
     flex: 1,
-    marginTop:20
-  },
-  scrollView: {
-    flex: 1,
-    backgroundColor: 'pink',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor:'#EEEEEE'
   }
 })
 

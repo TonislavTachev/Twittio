@@ -9,9 +9,7 @@ const newUserSchema = new mongoose.Schema({
        type:String,
        required:true
    },
-   posts:[{
-       id:{type: mongoose.Schema.Types.ObjectId, ref: 'post'}
-   }],
+   posts:[{type:mongoose.Schema.Types.ObjectId, ref: 'post'}],
    firstName:{
        type:String,
        required:true

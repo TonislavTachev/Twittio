@@ -58,7 +58,8 @@ const none = () => {
           <None.Screen name="Tabs" component={MyTabs} options={{
             headerShown:false
           }}/>
-          <None.Screen name="Create" component={Create}/>
+          <None.Screen name="Create" component={Create} options={{
+          }}/>
           </>
         )}
         </None.Navigator>
