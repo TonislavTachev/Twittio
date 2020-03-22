@@ -57,7 +57,7 @@ const Profile = ({navigation}) => {
                   }}/>
                   </TouchableOpacity>
                </View>
-             <Posts/>
+             <Posts user={user}/>
             </View>
         </ScrollView>
     )
