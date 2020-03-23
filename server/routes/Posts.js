@@ -8,12 +8,9 @@ router.get('/', auth, async(req,res)=>{
 
      const {id} = req.user;
      try {
-     let user = await User.findOne({id});
 
-     if(user){
-         res.json(user);
-     }
-         
+         let posts = await Posts.find({});
+         res.json(posts);   
      } catch (error) {
          
      }
@@ -38,7 +35,7 @@ router.post('/create', auth, async(req,res)=>{
                if(user){
                    user.posts.push(post);
                    user.save();
-                   res.json({msg: "Post created"});
+                   res.json(post);
                }
            })
        }).catch((error)=>{
