@@ -16,7 +16,7 @@ router.get('/', auth, async(req,res)=>{
    try {
     const {id} = req.user;
    //find the user
-   let user = await User.findOne({id}).populate('posts').select('-password');
+   let user = await User.findOne({id}).select('-password');
 
    res.json(user);
        

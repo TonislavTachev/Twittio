@@ -10,7 +10,8 @@ const AuthState = props => {
     const initialState = {
         user:null,
         isAuthenticated:false,
-        loading:true
+        loading:true,
+        token: AsyncStorage.getItem('token')
     }
   
   const [state, dispatch] = useReducer(AuthReducer, initialState);
@@ -86,6 +87,7 @@ const AuthState = props => {
     return (
         <AuthContext.Provider value={{
            user: state.user,
+           token:state.user,
            isAuthenticated: state.isAuthenticated,
            loading:state.loading,
            getUser,

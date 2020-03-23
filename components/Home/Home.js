@@ -5,7 +5,7 @@ import Progressbar from '../Progress/Progressbar';
 const Home = ({natigation}) => {
 
     const authContext = useContext(AuthContext);
-    const {loading, user, logout, getUser, isAuthenticated} = authContext;
+    const {loading, user, logout, getUser, isAuthenticated, token} = authContext;
     const [refreshing, setRefresh] = useState(false);
 
      useEffect(()=>{
@@ -41,7 +41,6 @@ const Home = ({natigation}) => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
         }>
           <View style={styles.container}>
-              <Text>{user.username}</Text>
           </View>
          </ScrollView>
       

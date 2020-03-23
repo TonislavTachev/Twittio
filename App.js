@@ -21,6 +21,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import AuthState from './context/AuthContext/AuthState'
+import UserState from './context/UserContext/UserState'
 import Home from './components/Home/Home'
 import Loading from './components/Loading/Loading'
 import Register from './components/Register/Register.js'
@@ -51,9 +52,11 @@ const App: () => React$Node = () => {
   return (   
       <NavigationContainer>
       <AuthState>
+      <UserState>
           <Stack.Navigator>
              <Stack.Screen name="None" component={NoneStack} options={{headerShown:false}}/>
           </Stack.Navigator>
+      </UserState>
       </AuthState>
       </NavigationContainer>
   ); 

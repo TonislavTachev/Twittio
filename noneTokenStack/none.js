@@ -47,7 +47,7 @@ const none = () => {
        
         <None.Navigator>
         {/* if not, return a screen which prompts him to input his credentials */}
-        {isAuthenticated === false ? (
+        {isAuthenticated === false && user === null ? (
           <>
           <None.Screen name="Register" component={Register} options={{headerShown:false,}}/>
           <None.Screen name="Login" component={Login} options={{headerShown:false}}/>
