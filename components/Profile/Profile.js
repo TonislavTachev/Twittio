@@ -3,17 +3,17 @@ import {ScrollView, View ,Text, StyleSheet, Image, ImageBackground, TouchableOpa
 import AuthContext from '../../context/AuthContext/authContext';
 import Progressbar from '../Progress/Progressbar';
 import Posts from '../Post/Post';
+import {Container, Fab, Content} from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 const Profile = ({navigation}) => {
 
     const authContext = useContext(AuthContext);
-    const [isPressed, setPressed] = useState(false);
     const {getUser, user} = authContext;
-
+    const [active, setActive] = useState(false);
 
     const ChangePic = () =>{
       navigation.navigate('Create');
-      setPressed(true);
+      setActive(false);
     }
 
     useEffect(() => {
@@ -26,6 +26,7 @@ const Profile = ({navigation}) => {
 
     return (
         <ScrollView contentContainerStyle={{flexGrow:1}}>
+          <Container>
             <View style={myStyles.container}>
                 <View style={myStyles.avatar}>
                    <ImageBackground source={{uri:'https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero-00e10b1f.jpg'}} style={myStyles.background}>
@@ -48,17 +49,23 @@ const Profile = ({navigation}) => {
                 </View>
             </View>
 
-               <View style={myStyles.btn}>
-               <TouchableOpacity onPress={ChangePic}>
-                 <Icon name="ios-add-circle" size={46} color="#4b7bec" style={{
-                    shadowOpacity: 2,
-        textShadowRadius: 2,
-        textShadowOffset: { width: 0.1, height: 1 }
-                  }}/>
-                  </TouchableOpacity>
-               </View>
              <Posts user={user}/>
+
+
+             <Fab active={active}
+               direction='up' style={{ backgroundColor: '#5067FF'}}
+               position="bottomRight" 
+              onPress={() => setActive(!active)}>
+                <Icon name="ios-add" />
+            <Button style={{ backgroundColor: '#34A34F' }} onPress={ChangePic}>
+              <Icon name="logo-whatsapp" />
+            </Button>
+            <Button style={{ backgroundColor: '#3B5998' }}>
+              <Icon name="logo-facebook" />
+            </Button>            
+            </Fab>
             </View>
+          </Container>
         </ScrollView>
     )
 }
@@ -95,14 +102,6 @@ const myStyles = StyleSheet.create({
     numbers:{
         textAlign:'center'
     },
-    btn:{
-    position: 'absolute',
-    bottom:36,
-    right:10,
-    },
-    buttonPressed:{
-        backgroundColor:'#fff'
-    }
 })
 
 export default Profile

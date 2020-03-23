@@ -1,20 +1,31 @@
 import React, {useEffect, useContext} from 'react'
 import {View, Flatlist, StyleSheet, Text, SafeAreaView} from 'react-native'
 import AuthContext from '../../context/AuthContext/authContext';
+import UserContext from '../../context/UserContext/userContext';
 import Progressbar from '../Progress/Progressbar';
 import PostItem from './PostItem';
 const Post = props => {
     
     const {user} = props
     const authContext = useContext(AuthContext);
+    const userContext = useContext(UserContext);
+    const {getPosts, posts} = userContext;
 
-    if(user === null){
+    if(user === null ){
+        return <Progressbar/>
+    }
+ 
+    useEffect(()=>{
+        getPosts();
+    },[]);
+
+    if(posts.length === undefined){
         return <Progressbar/>
     }
 
     return (
         <View style={styles.container}>
-            {user.posts.map(el => <PostItem key={el._id} post={el} user={user}/>)}
+            {posts.map(el=> <PostItem key={el._id} post={el} user={user}/>)}
         </View>
     )
 }
