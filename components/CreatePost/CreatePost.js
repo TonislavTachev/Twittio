@@ -1,15 +1,31 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import {View, TextInput, TouchableOpacity, StyleSheet, Text} from 'react-native'
+import UserContext from '../../context/UserContext/userContext';
 
 const CreatePost = () => {
+
+    const [text, setText] = useState('');
+    const userContext = useContext(UserContext);
+    const {addPost} = userContext
+
+    const getText = (inputText) =>{
+       setText(inputText);
+    }
+
+   const submit = () =>{
+       addPost(text);
+       setText('');
+   }
+
+
     return (
         <View style={styles.container}>
 
             <View style={styles.input}>
                  <Text style={{fontSize:20, textAlign:'center', marginTop:26}}>What's on your mind ?</Text>
-                  <TextInput style={styles.text} multiline placeholder="Tell the world..." numberOfLines={3}/>
+                  <TextInput style={styles.text} multiline placeholder="Tell the world..." numberOfLines={3} value={text} onChangeText={getText}/>
                   <View>
-                   <TouchableOpacity style={styles.btn}><Text  style={{textAlign:'center', fontSize:18, color:'#fff'}}>Submit</Text></TouchableOpacity>
+                   <TouchableOpacity style={styles.btn}><Text  style={{textAlign:'center', fontSize:18, color:'#fff'}} onPress={submit}>Submit</Text></TouchableOpacity>
                   </View>
             </View>
         </View>
