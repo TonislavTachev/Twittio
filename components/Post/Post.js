@@ -6,7 +6,7 @@ import Progressbar from '../Progress/Progressbar';
 import PostItem from './PostItem';
 const Post = props => {
     
-    const {user} = props
+    const {user, navigation} = props
     const authContext = useContext(AuthContext);
     const userContext = useContext(UserContext);
     const {getPosts, posts} = userContext;
@@ -25,7 +25,7 @@ const Post = props => {
 
     return (
         <View style={styles.container}>
-            {posts.map(el=> <PostItem key={el._id} post={el} user={user}/>)}
+            {posts.map(el=> <PostItem navigation={navigation} key={el._id} post={el} user={user}/>)}
         </View>
     )
 }

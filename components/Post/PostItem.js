@@ -1,12 +1,40 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {TouchableOpacity, View, StyleSheet, Text, Image} from 'react-native'
+import {Container, Fab, Content, ActionSheet} from 'native-base';
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import Entypo from 'react-native-vector-icons/Entypo'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Progressbar from '../Progress/Progressbar';
 
-const PostItem = ({post, user}) => {
+const PostItem = ({post, user, navigation}) => {
+
+    const BUTTONS = [
+  { text: "Edit tweet", icon: "create", iconColor: "#ea943b" },
+  { text: "Delete", icon: "ios-trash", iconColor: "#fa213b" },
+  { text: "Cancel", icon: "close", iconColor: "#25de5b" }
+  ]
+
+  const [button, setbutton] = useState({});
+
+
+  const DESTRUCTIVE_INDEX = 3;
+  const CANCEL_INDEX = 4;
+    
+     if(button.icon === 'create'){
+     setbutton({});
+     navigation.navigate('Update', {
+         post_id:post._id,
+         post:post
+     });
+     } else if(button.icon === 'cancel'){
+     setbutton({});
+    } else if(button.icon === 'delete'){
+         //delete
+      setbutton({});
+    }
+
+
 
     if(post === null){
         return <Progressbar/>
@@ -23,8 +51,15 @@ const PostItem = ({post, user}) => {
                <Text>{post.base}</Text>
                 <View style={{flexDirection:'row', justifyContent:'flex-start'}}>
                     <Icon name="favorite-border" size={30} color="#4b7bec" style={{marginTop:10}}/>
-                     <Icon name="chat-bubble-outline" size={30} color="#4b7bec" style={{marginTop:10, marginLeft:15}}/>
-                      <Icon name="repeat" size={30} color="#4b7bec" style={{marginTop:10, marginLeft:15}}/>
+                    <Icon name="chat-bubble-outline" size={30} color="#4b7bec" style={{marginTop:10, marginLeft:15}}/>
+                    <Icon name="repeat" size={30} color="#4b7bec" style={{marginTop:10, marginLeft:15}}/>
+                    <Icon onPress={()=> ActionSheet.show({
+                        options:BUTTONS,
+                        cancelButtonIndex:CANCEL_INDEX,
+                        destructiveButtonIndex:DESTRUCTIVE_INDEX,
+                    },buttonIndex =>{
+                        setbutton(BUTTONS[buttonIndex]);
+                    })} name="more-vert" size={30} color="#4b7bec" style={{marginTop:10, marginLeft:2}}/>
                 </View>
             </View>
         </View>

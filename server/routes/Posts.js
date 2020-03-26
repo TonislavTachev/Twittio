@@ -9,11 +9,25 @@ router.get('/', auth, async(req,res)=>{
      const {id} = req.user;
      try {
 
-         let posts = await Posts.find({});
-         res.json(posts);   
+         let posts = await User.findOne({id}).populate('posts');
+         res.json(posts.posts);   
      } catch (error) {
          
      }
+})
+
+//get one post
+router.get('/:post_id', auth,async(req,res)=>{
+    
+     const {id} = req.user;
+     const {post_id} = req.params.post_id;
+      const user = User.findOne({id});
+   
+   if(user){
+      const post = await Posts.findById(req.params.post_id);
+      res.json(post);
+   }
+
 })
 
 //create a post
@@ -43,5 +57,23 @@ router.post('/create', auth, async(req,res)=>{
        })
 
 });
+
+router.put('/update/:post_id', auth, async(req,res)=>{
+     
+     const {id} = req.user;
+     const {post_id} = req.params.post_id
+     const {base} = req.body;
+     const user = await User.findOne({id});
+
+     const postFields = {};
+     if(base) postFields.base = base;
+
+     if(user){
+       console.log(req.params.post_id);
+
+       const post = await Posts.findByIdAndUpdate(req.params.post_id, req.body, {new:true});
+       res.json(post);
+     }
+})
 
 module.exports = router

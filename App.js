@@ -1,6 +1,7 @@
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Root } from "native-base";
 
 import React, {useEffect, useContext} from 'react';
 import {
@@ -53,9 +54,11 @@ const App: () => React$Node = () => {
       <NavigationContainer>
       <AuthState>
       <UserState>
+         <Root>
           <Stack.Navigator>
              <Stack.Screen name="None" component={NoneStack} options={{headerShown:false}}/>
           </Stack.Navigator>
+         </Root>
       </UserState>
       </AuthState>
       </NavigationContainer>

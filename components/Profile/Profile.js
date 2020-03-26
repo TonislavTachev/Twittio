@@ -3,7 +3,7 @@ import {ScrollView, View ,Text, StyleSheet, Image, ImageBackground, TouchableOpa
 import AuthContext from '../../context/AuthContext/authContext';
 import Progressbar from '../Progress/Progressbar';
 import Posts from '../Post/Post';
-import {Container, Fab, Content} from 'native-base';
+import {Container, Fab, Content, ActionSheet} from 'native-base';
 import Icon from 'react-native-vector-icons/Ionicons';
 const Profile = ({navigation}) => {
 
@@ -49,7 +49,7 @@ const Profile = ({navigation}) => {
                 </View>
             </View>
 
-             <Posts user={user}/>
+             <Posts user={user} navigation={navigation}/>
 
 
              <Fab active={active}
