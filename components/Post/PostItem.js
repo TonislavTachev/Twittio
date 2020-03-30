@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import {TouchableOpacity, View, StyleSheet, Text, Image} from 'react-native'
 import {Container, Fab, Content, ActionSheet} from 'native-base';
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
@@ -6,6 +6,7 @@ import Entypo from 'react-native-vector-icons/Entypo'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Progressbar from '../Progress/Progressbar';
+import UserContext from '../../context/UserContext/userContext';
 
 const PostItem = ({post, user, navigation}) => {
 
@@ -16,6 +17,8 @@ const PostItem = ({post, user, navigation}) => {
   ]
 
   const [button, setbutton] = useState({});
+  const userContext = useContext(UserContext);
+  const {deletePost} = userContext;
 
 
   const DESTRUCTIVE_INDEX = 3;
@@ -29,8 +32,8 @@ const PostItem = ({post, user, navigation}) => {
      });
      } else if(button.icon === 'cancel'){
      setbutton({});
-    } else if(button.icon === 'delete'){
-         //delete
+    } else if(button.icon === 'ios-trash'){
+      deletePost(post._id);
       setbutton({});
     }
 

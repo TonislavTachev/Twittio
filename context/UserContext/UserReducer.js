@@ -1,4 +1,4 @@
-import {GET_POSTS, CREATE_POST, UPDATE_POST, GET_POST} from '../../types'
+import {GET_POSTS, CREATE_POST, UPDATE_POST, GET_POST, DELETE_POST} from '../../types'
 
 
 export default(state,action) =>{
@@ -27,6 +27,12 @@ export default(state,action) =>{
             ...state,
             loading:false,
             selected:action.payload
+        }
+        case DELETE_POST:
+        return{
+            ...state,
+            posts: state.posts.filter(post => post._id !== action.payload),
+            refresh:true
         }
         default:
             break;

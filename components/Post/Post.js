@@ -9,7 +9,11 @@ const Post = props => {
     const {user, navigation} = props
     const authContext = useContext(AuthContext);
     const userContext = useContext(UserContext);
-    const {getPosts, posts} = userContext;
+    const {getPosts, posts, refresh} = userContext;
+
+    if(refresh){
+        getPosts();
+    }
 
     if(user === null ){
         return <Progressbar/>
