@@ -4,7 +4,6 @@ const newPostSchema = new mongoose.Schema({
     img:String,
     headline:{
         type:String,
-        required:true
     },
     base:{
         type:String,

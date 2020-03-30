@@ -38,26 +38,25 @@ router.post('/create', auth, async(req,res)=>{
 
        //get the params for the post
        const {headline, base,img} = req.body;
+
        const post = new Posts();
        post.headline = headline,
        post.base = base,
        post.img = img
 
        //save the post inside the posts array in the user model
-       post.save().then((result) =>{
-           User.findOne({id}, (err, user) =>{
-               if(user){
-                   user.posts.push(post);
-                   user.save();
-                   res.json(post);
-               }
-           })
-       }).catch((error)=>{
-           res.status(500).json({error});
-       })
+       post.save();
 
+       let user = await User.findOne({id});
+
+       if(user){
+           user.posts.push(post);
+           user.save();
+           res.json(post);
+       }
 });
 
+//edit post
 router.put('/update/:post_id', auth, async(req,res)=>{
      
      const {id} = req.user;
@@ -76,4 +75,14 @@ router.put('/update/:post_id', auth, async(req,res)=>{
      }
 })
 
+//delete post
+router.delete('/delete/:post_id', auth, async(req,res)=>{
+    
+    try {
+        await Posts.findByIdAndDelete(req.params.post_id);
+    } catch (error) {
+        
+    }
+
+})
 module.exports = router
