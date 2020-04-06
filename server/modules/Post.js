@@ -5,6 +5,7 @@ const newPostSchema = new mongoose.Schema({
     headline:{
         type:String,
     },
+    comments:[{type:mongoose.Schema.Types.ObjectId, ref:'comment'}],
     base:{
         type:String,
         required:true

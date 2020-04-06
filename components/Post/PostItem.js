@@ -13,13 +13,16 @@ const PostItem = ({post, user, navigation}) => {
     const BUTTONS = [
   { text: "Edit tweet", icon: "create", iconColor: "#ea943b" },
   { text: "Delete", icon: "ios-trash", iconColor: "#fa213b" },
-  { text: "Cancel", icon: "close", iconColor: "#25de5b" }
+  { text: "Cancel", icon: "close", iconColor: "#25de5b" },
   ]
 
   const [button, setbutton] = useState({});
   const userContext = useContext(UserContext);
   const {deletePost} = userContext;
-
+  
+  const openCommentDialog = () =>{
+      navigation.navigate('Comment', {post_id:post._id, post:post, user:user});
+  }
 
   const DESTRUCTIVE_INDEX = 3;
   const CANCEL_INDEX = 4;
@@ -63,6 +66,7 @@ const PostItem = ({post, user, navigation}) => {
                     },buttonIndex =>{
                         setbutton(BUTTONS[buttonIndex]);
                     })} name="more-vert" size={30} color="#4b7bec" style={{marginTop:10, marginLeft:2}}/>
+                    <Icon name="create" size={30} color="#4b7bec"  style={{marginTop:10}} onPress={openCommentDialog}/>
                 </View>
             </View>
         </View>
