@@ -11,6 +11,7 @@ import Profile from '../components/Profile/Profile';
 import Settings from '../components/Settings/Settings';
 import Create from '../components/CreatePost/CreatePost';
 import Update from '../components/UpdateItem/Update';
+import Comment from '../components/Comment/Comment';
 const None = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
 import {AsyncStorage} from 'react-native';
@@ -62,6 +63,9 @@ const none = () => {
           <None.Screen name="Create" component={Create} options={{
           }}/>
           <None.Screen name="Update" component={Update} options={{
+            headerShown:false
+          }}/>
+          <None.Screen name="Comment" component={Comment} options={{
             headerShown:false
           }}/>
           </>
