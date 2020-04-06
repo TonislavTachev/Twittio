@@ -9,6 +9,8 @@ const UserState = props => {
 
     const initialState = {
         posts:[],
+        comments:[],
+        comment:{},
         selected:null,
         loading:false,
         error:null,
@@ -123,6 +125,8 @@ const UserState = props => {
     return (
         <UserContext.Provider value={{
             posts:state.posts,
+            comments:state.comments,
+            comment:state.comment,
             selected:state.selected,
             loading:state.loading,
             error:state.error,
