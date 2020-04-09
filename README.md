@@ -11,8 +11,8 @@ Twitter clone build with React Native, Express.js, Node.js
 </ul>
 
 <h2>Screenshots</h2>
-<img src="https://i.imgur.com/ilM0The.png" height="500" width="500"/>
-<img src="https://i.imgur.com/SmvpN7f.png" height="500" width="500"/>
-<img src="https://i.imgur.com/NkXaLLK.png" height="500" width="500"/>
-<img src="https://i.imgur.com/7ltK714.png" height="500" width="500"/>
+<img src="https://i.imgur.com/ilM0The.png" height="400" width="200"/>
+<img src="https://i.imgur.com/SmvpN7f.png" height="400" width="200"/>
+<img src="https://i.imgur.com/NkXaLLK.png" height="400" width="200"/>
+<img src="https://i.imgur.com/7ltK714.png" height="400" width="200"/>
 
