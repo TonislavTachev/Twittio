@@ -11,4 +11,4 @@ Twitter clone build with React Native, Express.js, Node.js
 </ul>
 
 <h2>Screenshots</h2>
-<img src="https://imgur.com/7ltK714" height="100" width="90">
+<img src="https://imgur.com/7ltK714" height="100" width="90"/>
