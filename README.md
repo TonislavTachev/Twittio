@@ -1,5 +1,6 @@
 # Twittio
-Twitter clone build with React Native, Express.js, Node.js
+Twitter clone build with React Native, Express.js, Node.js.
+<p>To start the project open a new terminal and type <b>react-native run-android</b></p>
 
 
 <h2>To-do</h2>
